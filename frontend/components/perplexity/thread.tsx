@@ -30,6 +30,10 @@ import {
 } from "@/components/assistant-ui/attachment";
 
 export const Thread: FC = () => {
+  const handleLogoClick = () => {
+    window.location.reload();
+  };
+
   return (
     <ThreadPrimitive.Root
       className="box-border h-full bg-[#191a1a]"
@@ -42,17 +46,18 @@ export const Thread: FC = () => {
       </ThreadPrimitive.Empty>
       <ThreadPrimitive.If empty={false}>
         {/* Fixed header */}
-        <div className="flex items-center justify-between pl-4 pr-4 py-3 absolute top-0 left-0 right-0 z-10 bg-[#191a1a]">
+        <div className="flex items-center justify-between pl-1 md:pl-2 pr-2 md:pr-4 py-1 md:py-2 absolute top-0 left-0 right-0 z-10 bg-[#191a1a]">
           <Image
             src="/logo.png"
             alt="Queen-RAG"
             width={300}
             height={300}
-            className="h-24 w-auto -ml-9"
+            className="h-24 md:h-40 w-auto cursor-pointer hover:opacity-80 transition-opacity"
             priority
+            onClick={handleLogoClick}
           />
         </div>
-        <ThreadPrimitive.Viewport className="flex h-full flex-col items-center overflow-y-scroll scroll-smooth bg-inherit px-4 pt-32">
+        <ThreadPrimitive.Viewport className="flex h-full flex-col items-center overflow-y-scroll scroll-smooth bg-inherit px-4 pt-24 md:pt-40">
           <ThreadPrimitive.Messages
             components={{
               UserMessage: UserMessage,
@@ -89,39 +94,44 @@ const ThreadScrollToBottom: FC = () => {
 };
 
 const ThreadWelcome: FC = () => {
+  const handleLogoClick = () => {
+    window.location.reload();
+  };
+
   return (
     <div className="flex h-full w-full flex-col">
       {/* Fixed header */}
-      <div className="flex items-center justify-between pl-4 pr-4 py-3 absolute top-0 left-0 right-0 z-10 bg-[#191a1a]">
+      <div className="flex items-center justify-between pl-1 md:pl-2 pr-2 md:pr-4 py-1 md:py-2 absolute top-0 left-0 right-0 z-10 bg-[#191a1a]">
         <Image
           src="/logo.png"
           alt="Queen-RAG"
           width={300}
           height={300}
-          className="h-24 w-auto -ml-9"
+          className="h-24 md:h-40 w-auto cursor-pointer hover:opacity-80 transition-opacity"
           priority
+          onClick={handleLogoClick}
         />
       </div>
-      <div className="flex h-full w-full items-center justify-center pt-16">
+      <div className="flex h-full w-full items-center justify-center pt-4 md:pt-8 px-4">
         <div className="flex w-full max-w-[var(--thread-max-width)] flex-grow flex-col gap-12">
-          <div className="flex w-full flex-grow flex-col items-center justify-center">
-            <p className="font-regular font-display text-2xl md:text-3xl">
+          <div className="flex w-full flex-grow flex-col items-center justify-center px-4">
+            <p className="font-regular font-display text-2xl md:text-3xl text-center">
               Chat with NEUVIA application documents
             </p>
           </div>
-          <ComposerPrimitive.Root className="w-full rounded-lg border bg-[#202222] px-2 shadow-sm transition-all duration-200 outline-none focus-within:ring-1 focus-within:ring-border focus:outline-none">
+          <ComposerPrimitive.Root className="w-full max-w-lg md:max-w-full mx-auto rounded-lg border bg-[#202222] px-2 shadow-sm transition-all duration-200 outline-none focus-within:ring-1 focus-within:ring-border focus:outline-none">
             <ComposerAttachments />
             <ComposerPrimitive.Input
               rows={1}
               autoFocus
               placeholder="Type your message..."
-              className="max-h-40 w-full flex-grow resize-none border-none bg-transparent px-2 py-4 text-lg outline-none placeholder:text-muted-foreground focus:ring-0 disabled:cursor-not-allowed"
+              className="max-h-32 md:max-h-40 w-full flex-grow resize-none border-none bg-transparent px-2 py-3 md:py-4 text-base md:text-lg outline-none placeholder:text-muted-foreground focus:ring-0 disabled:cursor-not-allowed"
             />
             <div className="mx-1.5 flex gap-2">
               <div className="flex-grow" />
               <ComposerPrimitive.Send asChild>
                 <TooltipIconButton
-                  className="my-2.5 size-8 rounded-full bg-blue-600 hover:bg-blue-700 hover:scale-105 text-white p-2 transition-all"
+                  className="my-2 size-8 rounded-full bg-blue-600 hover:bg-blue-700 hover:scale-105 text-white p-2 transition-all"
                   tooltip="Send"
                   variant="ghost"
                 >

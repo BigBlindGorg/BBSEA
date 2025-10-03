@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Queen RAG - AI Assistant",
+  title: "Neuvia Proposal",
   description: "Your AI assistant powered by your knowledge base",
 };
 

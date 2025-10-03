@@ -16,7 +16,17 @@ export const Login = ({ onLogin }: LoginProps) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (email === 'ketevanc@unops.org' && password === 'neuvia2025') {
+    const validUsers = [
+      { email: 'ketevanc@unops.org', password: 'neuvia2025' },
+      { email: 'bbsea.eic@ops.org', password: 'neuvia2025' },
+      { email: 'info@startupgeorgia.org', password: 'neuvia2025' }
+    ];
+
+    const isValid = validUsers.some(
+      user => user.email === email && user.password === password
+    );
+
+    if (isValid) {
       onLogin(true);
     } else {
       setError('Invalid credentials');
