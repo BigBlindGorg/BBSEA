@@ -4,7 +4,9 @@ import { FC, memo } from "react";
 import ReactMarkdown, { Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
 import { cn } from "@/lib/utils";
+import "katex/dist/katex.min.css";
 
 export type MarkdownTextProps = {
   text: string;
@@ -31,14 +33,14 @@ export const MarkdownText: FC<MarkdownTextProps> = memo(({ text, className }) =>
     code: ({ className, children, ...props }) => {
       const match = /language-(\w+)/.exec(className || "");
       return match ? (
-        <pre className="mb-2 overflow-x-auto rounded-md bg-gray-100 p-4 dark:bg-gray-900">
+        <pre className="mb-2 overflow-x-auto rounded-md bg-[#202222] p-4 text-[#ededed]">
           <code className={className} {...props}>
             {children}
           </code>
         </pre>
       ) : (
         <code
-          className="rounded-md bg-gray-100 px-1.5 py-0.5 dark:bg-gray-900"
+          className="rounded-md bg-[#202222] px-1.5 py-0.5 text-[#ededed] whitespace-pre-wrap"
           {...props}
         >
           {children}
@@ -78,6 +80,7 @@ export const MarkdownText: FC<MarkdownTextProps> = memo(({ text, className }) =>
     <div className={cn("prose prose-sm max-w-none dark:prose-invert", className)}>
       <ReactMarkdown
         remarkPlugins={[remarkGfm, remarkMath]}
+        rehypePlugins={[rehypeKatex]}
         components={components}
       >
         {text}

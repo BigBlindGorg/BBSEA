@@ -78,3 +78,37 @@ body {
   background: inherit !important;
 }
 
+/* KaTeX math rendering dark theme */
+.katex {
+  color: #ededed !important;
+}
+
+.katex-display {
+  background: #202222 !important;
+  padding: 1rem !important;
+  border-radius: 0.375rem !important;
+  margin: 0.5rem 0 !important;
+  overflow-x: auto !important;
+}
+
+.katex .mord,
+.katex .mbin,
+.katex .mrel,
+.katex .mopen,
+.katex .mclose,
+.katex .mpunct,
+.katex .minner {
+  color: #ededed !important;
+}
+
+/* Ensure proper spacing in code and math */
+code, pre {
+  white-space: pre-wrap !important;
+  word-break: break-word;
+}
+
+/* Preserve spaces in inline elements */
+.katex-html {
+  white-space: normal !important;
+}
+
