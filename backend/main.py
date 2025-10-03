@@ -72,12 +72,24 @@ app = FastAPI(
 )
 
 # Configure CORS
+import json
+
+# Parse CORS_ORIGINS from environment (JSON array format)
+cors_origins_str = os.getenv("CORS_ORIGINS", "[]")
+try:
+    cors_origins_list = json.loads(cors_origins_str)
+except json.JSONDecodeError:
+    logger.warning(f"Failed to parse CORS_ORIGINS, using empty list: {cors_origins_str}")
+    cors_origins_list = []
+
 allowed_origins = [
-    os.getenv("FRONTEND_URL", "http://localhost:3000"),
+    *cors_origins_list,
     "http://localhost:3000",
     "http://localhost:3001",
     "http://localhost:3002",
 ]
+
+logger.info(f"CORS allowed origins: {allowed_origins}")
 
 app.add_middleware(
     CORSMiddleware,

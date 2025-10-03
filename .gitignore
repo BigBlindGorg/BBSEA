@@ -17,7 +17,7 @@ node_modules/
 out/
 *.tsbuildinfo
 
-# Environment variables
+# Environment variables - keep actual credentials safe
 .env
 .env.local
 
@@ -32,15 +32,9 @@ out/
 .DS_Store
 Thumbs.db
 
-# Logs
+# Logs only
 *.log
 logs/
-
-# Database
-*.db
-*.sqlite
-
-# Storage - keep logs empty but commit documents and vector DB
 backend/storage/logs/*
 !backend/storage/logs/.gitkeep
 

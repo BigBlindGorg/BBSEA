@@ -246,7 +246,8 @@ const RAGAdapter: ChatModelAdapter = {
     }
 
     try {
-      const response = await fetch('http://localhost:8000/api/chat/stream', {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8001';
+      const response = await fetch(`${apiUrl}/api/chat/stream`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
