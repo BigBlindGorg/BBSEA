@@ -16,12 +16,10 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon,
   CopyIcon,
-  PaperclipIcon,
   RefreshCwIcon,
   SparkleIcon,
 } from "lucide-react";
 import Image from "next/image";
-import { KnowledgeBaseButton } from "../knowledge-base/knowledge-base-button";
 import { cn } from "@/lib/utils";
 
 import { MarkdownText } from "@/components/assistant-ui/markdown-text";

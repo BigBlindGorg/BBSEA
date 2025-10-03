@@ -29,6 +29,7 @@ httpx==0.28.1
 pydantic==2.10.3
 pydantic-settings==2.6.1
 psutil==6.1.1
+eval_type_backport==0.2.2  # Required for Python 3.9 compatibility with PEP 604 type hints
 
 # Production
 gunicorn==23.0.0

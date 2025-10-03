@@ -43,7 +43,9 @@ select = [
 ]
 ignore = [
     "E501",  # line too long (handled by formatter)
+    "E402",  # module level import not at top (needed for __future__ imports)
     "B008",  # do not perform function calls in argument defaults
+    "B905",  # zip() strict= not available in Python 3.9
     "C901",  # too complex
     "W191",  # indentation contains tabs
 ]

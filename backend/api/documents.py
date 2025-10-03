@@ -1,7 +1,9 @@
+from __future__ import annotations
+
 import logging
 import shutil
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any
 
 import aiofiles
 from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile
@@ -36,7 +38,7 @@ class DocumentUploadResponse(BaseModel):
     status: str
     filename: str
     message: str
-    size: Optional[int] = None
+    size: int | None = None
 
 
 class DocumentDeleteRequest(BaseModel):
@@ -47,8 +49,8 @@ class DocumentDeleteRequest(BaseModel):
 @router.post("/upload", response_model=DocumentUploadResponse)
 async def upload_document(
     file: UploadFile = File(...),
-    description: Optional[str] = Form(None),
-    tags: Optional[str] = Form(None),
+    description: str | None = Form(None),
+    tags: str | None = Form(None),
     rag_engine: QueenRAGEngine = Depends(get_rag_engine)
 ) -> DocumentUploadResponse:
     """

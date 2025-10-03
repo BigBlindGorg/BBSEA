@@ -1,13 +1,13 @@
-"""Application dependencies."""
+from __future__ import annotations
 
-from typing import Optional
+"""Application dependencies."""
 
 from fastapi import HTTPException
 
 from rag.rag_engine_simple import QueenRAGEngine
 
 # Initialize RAG engine as global
-rag_engine: Optional[QueenRAGEngine] = None
+rag_engine: QueenRAGEngine | None = None
 
 
 def get_rag_engine() -> QueenRAGEngine:

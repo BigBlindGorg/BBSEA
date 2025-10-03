@@ -1,7 +1,9 @@
+from __future__ import annotations
+
 import json
 import logging
 from collections.abc import AsyncIterator
-from typing import Any, Optional, Union
+from typing import Any
 
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import StreamingResponse
@@ -26,8 +28,8 @@ class ChatRequest(BaseModel):
     history: list[ChatMessage] = Field(default=[], description="Chat history")
     use_rag: bool = Field(default=True, description="Whether to use RAG context")
     stream: bool = Field(default=True, description="Whether to stream the response")
-    top_k: Optional[int] = Field(default=None, description="Number of RAG results to use")
-    attachments: Optional[list[dict[str, Any]]] = Field(default=None, description="File attachments")
+    top_k: int | None = Field(default=None, description="Number of RAG results to use")
+    attachments: list[dict[str, Any]] | None = Field(default=None, description="File attachments")
 
 
 class ChatResponse(BaseModel):
@@ -40,7 +42,7 @@ class ChatResponse(BaseModel):
 class SearchRequest(BaseModel):
     """Search request model."""
     query: str = Field(..., description="Search query")
-    top_k: Optional[int] = Field(default=5, description="Number of results to return")
+    top_k: int | None = Field(default=5, description="Number of results to return")
 
 
 class SearchResponse(BaseModel):
@@ -53,7 +55,7 @@ class SearchResponse(BaseModel):
 async def chat_message(
     request: ChatRequest,
     rag_engine: QueenRAGEngine = Depends(get_rag_engine)
-) -> Union[ChatResponse, StreamingResponse]:
+) -> ChatResponse | StreamingResponse:
     """
     Send a chat message and get a response.
     Supports both streaming and non-streaming responses.

@@ -1,8 +1,9 @@
+from __future__ import annotations
+
 """Document parser for extracting text from various file formats."""
 
 import logging
 from pathlib import Path
-from typing import Optional
 
 from docx import Document
 from openpyxl import load_workbook
@@ -168,7 +169,7 @@ class DocumentParser:
             raise ValueError(f"Failed to parse text file: {e}") from e
 
     @classmethod
-    def parse_document(cls, file_path: str, file_type: Optional[str] = None) -> str:
+    def parse_document(cls, file_path: str, file_type: str | None = None) -> str:
         """
         Parse document and extract text based on file type.
 

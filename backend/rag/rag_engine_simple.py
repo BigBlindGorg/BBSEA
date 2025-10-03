@@ -1,8 +1,10 @@
+from __future__ import annotations
+
 import json
 import logging
 from collections.abc import AsyncIterator
 from pathlib import Path
-from typing import Any, Optional, Union
+from typing import Any
 
 import chromadb
 from chromadb.utils import embedding_functions
@@ -35,7 +37,7 @@ class QueenRAGEngine:
         )
 
         # Collection will be initialized in async initialize()
-        self.collection: Optional[chromadb.Collection] = None
+        self.collection: chromadb.Collection | None = None
 
         # Track loaded documents
         self.loaded_documents: set[str] = set()
@@ -72,7 +74,7 @@ class QueenRAGEngine:
                 if file_path.is_file() and not file_path.name.endswith('.meta.json'):
                     self.loaded_documents.add(file_path.name)
 
-    async def add_document(self, file_path: str, metadata: Optional[dict[str, Any]] = None) -> dict[str, Any]:
+    async def add_document(self, file_path: str, metadata: dict[str, Any] | None = None) -> dict[str, Any]:
         """
         Add a new document to the RAG knowledge base.
         """
@@ -137,7 +139,7 @@ class QueenRAGEngine:
             logger.error(f"Failed to add document {file_path}: {e}")
             raise
 
-    def _split_text(self, text: str, chunk_size: Optional[int] = None, chunk_overlap: Optional[int] = None) -> list[str]:
+    def _split_text(self, text: str, chunk_size: int | None = None, chunk_overlap: int | None = None) -> list[str]:
         """
         Split text into chunks.
         """
@@ -202,7 +204,7 @@ class QueenRAGEngine:
             logger.error(f"Failed to remove document {filename}: {e}")
             raise
 
-    async def search(self, query: str, top_k: Optional[int] = None) -> list[dict[str, Any]]:
+    async def search(self, query: str, top_k: int | None = None) -> list[dict[str, Any]]:
         """
         Search for relevant documents using semantic search.
         """
@@ -222,6 +224,7 @@ class QueenRAGEngine:
             if (results['documents'] and results['documents'][0] and
                 results['metadatas'] and results['metadatas'][0] and
                 results['distances'] and results['distances'][0]):
+                # Python 3.9 doesn't support strict parameter in zip()
                 for idx, (doc, metadata, distance) in enumerate(zip(
                     results['documents'][0],
                     results['metadatas'][0],
@@ -247,10 +250,10 @@ class QueenRAGEngine:
     async def chat(
         self,
         message: str,
-        history: Optional[list[dict[str, str]]] = None,
+        history: list[dict[str, str]] | None = None,
         use_rag: bool = True,
         stream: bool = True,
-        images: Optional[list[dict[str, Any]]] = None
+        images: list[dict[str, Any]] | None = None
     ) -> AsyncIterator[str]:
         """
         Chat with the AI using RAG-enhanced context.
