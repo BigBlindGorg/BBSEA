@@ -40,11 +40,9 @@ logs/
 *.db
 *.sqlite
 
-# Storage (uploaded documents and vector DB)
-backend/storage/documents/*
-backend/storage/chroma_db/*
+# Storage - keep logs empty but commit documents and vector DB
 backend/storage/logs/*
-!backend/storage/.gitkeep
+!backend/storage/logs/.gitkeep
 
 # Temporary files
 *.tmp

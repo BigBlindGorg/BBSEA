@@ -197,8 +197,8 @@ const UserMessage: FC = () => {
 
 const AssistantMessage: FC = () => {
   return (
-    <MessagePrimitive.Root className="relative grid w-full max-w-[var(--thread-max-width)] grid-cols-[auto_auto_1fr] grid-rows-[auto_1fr] py-4">
-      <div className="col-span-2 col-start-2 row-start-1 my-1.5 max-w-[calc(var(--thread-max-width)*0.8)] leading-7 break-words text-foreground">
+    <MessagePrimitive.Root className="relative w-full max-w-[var(--thread-max-width)] py-4">
+      <div className="my-1.5 leading-7 break-words text-foreground">
         <h1 className="mb-4 inline-flex items-center gap-2 text-2xl">
           <SparkleIcon /> Response
         </h1>
@@ -206,9 +206,10 @@ const AssistantMessage: FC = () => {
         <MessagePrimitive.Parts components={{ Text: MarkdownText }} />
       </div>
 
-      <AssistantActionBar />
-
-      <BranchPicker className="col-start-2 row-start-2 mr-2 -ml-2" />
+      <div className="flex items-center gap-2 mt-2">
+        <BranchPicker />
+        <AssistantActionBar />
+      </div>
     </MessagePrimitive.Root>
   );
 };
