@@ -1,0 +1,40 @@
+# Core Framework
+fastapi==0.115.5
+uvicorn[standard]==0.32.1
+python-multipart==0.0.12
+python-dotenv==1.0.1
+
+# OpenAI SDK
+openai==1.57.4
+
+# Vector Store (Chroma)
+chromadb==0.5.23
+
+# Document Processing
+pypdf==5.1.0
+python-docx==1.1.2
+openpyxl==3.1.5
+Pillow==11.0.0
+markdown==3.7
+
+# Database (for metadata and chat history)
+sqlalchemy==2.0.36
+alembic==1.14.0
+
+# Async Support
+aiofiles==24.1.0
+httpx==0.28.1
+
+# Utilities
+pydantic==2.10.3
+pydantic-settings==2.6.1
+psutil==6.1.1
+
+# Production
+gunicorn==23.0.0
+
+# Development & Type Checking
+mypy==1.13.0
+ruff==0.8.4
+types-aiofiles==24.1.0.20241221
+types-requests==2.32.0.20241016
