@@ -79,7 +79,7 @@ export const MarkdownText: FC<MarkdownTextProps> = memo(({ text, className }) =>
   return (
     <div className={cn("prose prose-sm max-w-none dark:prose-invert", className)}>
       <ReactMarkdown
-        remarkPlugins={[remarkGfm, remarkMath]}
+        remarkPlugins={[remarkGfm, [remarkMath, { singleDollarTextMath: false }]]}
         rehypePlugins={[rehypeKatex]}
         components={components}
       >

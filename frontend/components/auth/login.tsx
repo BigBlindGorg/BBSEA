@@ -17,9 +17,9 @@ export const Login = ({ onLogin }: LoginProps) => {
     e.preventDefault();
 
     const validUsers = [
-      { email: 'ketevanc@unops.org', password: 'neuvia2025' },
-      { email: 'bbsea.eic@ops.org', password: 'neuvia2025' },
-      { email: 'info@startupgeorgia.org', password: 'neuvia2025' }
+      { email: 'user1@example.com', password: 'your-password-here' },
+      { email: 'user2@example.com', password: 'your-password-here' },
+      { email: 'user3@example.com', password: 'your-password-here' }
     ];
 
     const isValid = validUsers.some(
