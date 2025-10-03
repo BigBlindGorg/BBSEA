@@ -53,7 +53,6 @@ export const Thread: FC = () => {
             className="h-24 w-auto -ml-9"
             priority
           />
-          <KnowledgeBaseButton />
         </div>
         <ThreadPrimitive.Viewport className="flex h-full flex-col items-center overflow-y-scroll scroll-smooth bg-inherit px-4 pt-32">
           <ThreadPrimitive.Messages
@@ -104,7 +103,6 @@ const ThreadWelcome: FC = () => {
           className="h-24 w-auto -ml-9"
           priority
         />
-        <KnowledgeBaseButton />
       </div>
       <div className="flex h-full w-full items-center justify-center pt-16">
         <div className="flex w-full max-w-[var(--thread-max-width)] flex-grow flex-col gap-12">
